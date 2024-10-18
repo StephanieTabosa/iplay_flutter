@@ -1,0 +1,40 @@
+name: iplay_flutter
+description: 'A new Flutter project.'
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+dependencies:
+  modular_bloc_bind: ^1.0.1
+  flutter_bloc: ^8.1.6
+  flutter_modular: ^5.0.3
+  equatable: ^2.0.5
+  flutter_native_splash: ^2.4.0
+
+  google_fonts: ^6.2.1
+  dio: ^5.4.3+1
+  dartz: ^0.10.1
+  flutter_svg: ^2.0.10+1
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  awesome_dio_interceptor: ^1.2.0
+  mocktail: ^1.0.4
+dev_dependencies:
+  flutter_launcher_icons: '^0.14.1'
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+
+flutter_native_splash:
+  color: '#050C33'
+  image: assets/images/logo.png
+  android: true
+  ios: true
+
+  android_12:
+    image: assets/images/logo.png
