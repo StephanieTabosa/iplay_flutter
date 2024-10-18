@@ -32,6 +32,7 @@ class MoviesModule extends Module {
         Bind(
           (i) => MoviesDatasourceImpl(
             dio: i(),
+            network: i(),
           ),
         ),
 

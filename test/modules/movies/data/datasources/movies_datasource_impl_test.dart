@@ -14,7 +14,10 @@ void main() {
 
   setUp(() {
     dio = DioMock();
-    datasource = MoviesDatasourceImpl(dio: dio);
+    datasource = MoviesDatasourceImpl(
+      dio: dio,
+      network: appNetworkImplMock,
+    );
   });
 
   group('When [getMoviesList] is called', () {

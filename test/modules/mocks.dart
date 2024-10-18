@@ -3,6 +3,7 @@ import 'package:iplay_flutter/modules/movies/data/datasources/movies_datasource.
 import 'package:iplay_flutter/modules/movies/domain/entities/movies.dart';
 import 'package:iplay_flutter/modules/movies/domain/usecases/get_movies_list_usecase.dart';
 import 'package:iplay_flutter/modules/movies/movies_navigator.dart';
+import 'package:iplay_flutter/modules/shared/data/app_network_impl.dart';
 import 'package:iplay_flutter/modules/shared/data/failures.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -13,6 +14,8 @@ class MoviesDatasourceMock extends Mock implements MoviesDatasource {}
 class MoviesNavigatorMock extends Mock implements MoviesNavigator {}
 
 class GetMoviesListUsecaseMock extends Mock implements GetMoviesListUsecase {}
+
+const appNetworkImplMock = AppNetworkImpl();
 
 List<Movies> moviesListMock = [
   const Movies(
