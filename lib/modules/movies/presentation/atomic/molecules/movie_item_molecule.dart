@@ -5,7 +5,7 @@ import '../../../../shared/constants/app_text_styles.dart';
 import '../../../domain/entities/movies.dart';
 import '../../../movies_strings.dart';
 
-class MovieItemMolecule extends StatelessWidget {
+class MovieItemMolecule extends StatefulWidget {
   const MovieItemMolecule({
     super.key,
     required this.movie,
@@ -16,6 +16,25 @@ class MovieItemMolecule extends StatelessWidget {
   final Movies movie;
   final bool isFavorite;
   final VoidCallback onFavoriteTap;
+
+  @override
+  State<MovieItemMolecule> createState() => _MovieItemMoleculeState();
+}
+
+class _MovieItemMoleculeState extends State<MovieItemMolecule> {
+  late ValueNotifier<bool> _isFavoriteNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFavoriteNotifier = ValueNotifier<bool>(widget.isFavorite);
+  }
+
+  @override
+  void dispose() {
+    _isFavoriteNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +50,7 @@ class MovieItemMolecule extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.0),
               color: AppColors.primary,
               image: DecorationImage(
-                image: NetworkImage(movie.image),
+                image: NetworkImage(widget.movie.image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -42,21 +61,29 @@ class MovieItemMolecule extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  movie.title,
+                  widget.movie.title,
                   style: AppTextStyles.rajdhaniBold20,
                 ),
                 Row(
                   children: [
                     Text(
-                      MoviesStrings.movies.release(movie.releaseDate),
+                      MoviesStrings.movies.release(widget.movie.releaseDate),
                       style: AppTextStyles.rajdhaniRegular16,
                     ),
-                    IconButton(
-                      onPressed: onFavoriteTap,
-                      icon: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: AppColors.red,
-                      ),
+                    ValueListenableBuilder<bool>(
+                      valueListenable: _isFavoriteNotifier,
+                      builder: (context, isFavorite, child) {
+                        return IconButton(
+                          onPressed: () {
+                            widget.onFavoriteTap();
+                            _isFavoriteNotifier.value = !isFavorite;
+                          },
+                          icon: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: AppColors.red,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
