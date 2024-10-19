@@ -7,7 +7,7 @@ O **iPlay** é um projeto desenvolvido com o objetivo de fornecer uma lista de o
 O nome "iPlay" foi escolhido para evocar a simplicidade e diversão na hora de escolher o próximo filme para assistir. O foco está em ajudar o usuário a conhecer maiores detalhes de um filme em um mesmo lugar.
 
 ## ⚡ Demo
-
+![iplay](https://github.com/user-attachments/assets/30de9884-c322-41fa-b99b-4c60c0d0a4c3)
 
 ## 💻 Principais Tecnologias
 - Flutter
