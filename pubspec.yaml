@@ -10,7 +10,7 @@ dependencies:
   flutter_modular: ^5.0.3
   equatable: ^2.0.5
   flutter_native_splash: ^2.4.0
-
+  icons_launcher: ^3.0.0
   google_fonts: ^6.2.1
   dio: ^5.4.3+1
   dartz: ^0.10.1
@@ -37,4 +37,21 @@ flutter_native_splash:
   ios: true
 
   android_12:
-    image: assets/images/logo.png
+    image: 'assets/images/logo.png'
+
+icons_launcher:
+  image_path: 'assets/images/icon.png'
+  platforms:
+    android:
+      enable: true
+      image_path: 'assets/images/icon.png'
+      notification_image: 'assets/images/icon.png'
+      adaptive_background_image: 'assets/images/icon.png'
+      adaptive_foreground_image: 'assets/images/icon.png'
+      adaptive_round_image: 'assets/images/icon.png'
+      adaptive_monochrome_image: 'assets/images/icon.png'
+    ios:
+      enable: true
+      image_path: 'assets/images/icon.png'
+      dark_path: 'assets/images/icon.png'
+      tinted_path: 'assets/images/icon.png'
