@@ -9,9 +9,13 @@ class MovieItemMolecule extends StatelessWidget {
   const MovieItemMolecule({
     super.key,
     required this.movie,
+    required this.isFavorite,
+    required this.onFavoriteTap,
   });
 
   final Movies movie;
+  final bool isFavorite;
+  final VoidCallback onFavoriteTap;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +45,20 @@ class MovieItemMolecule extends StatelessWidget {
                   movie.title,
                   style: AppTextStyles.rajdhaniBold20,
                 ),
-                Text(
-                  MoviesStrings.movies.release(movie.releaseDate),
-                  style: AppTextStyles.rajdhaniRegular16,
+                Row(
+                  children: [
+                    Text(
+                      MoviesStrings.movies.release(movie.releaseDate),
+                      style: AppTextStyles.rajdhaniRegular16,
+                    ),
+                    IconButton(
+                      onPressed: onFavoriteTap,
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

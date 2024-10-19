@@ -11,14 +11,18 @@ class MoviesListTemplate extends StatelessWidget {
     super.key,
     required this.movies,
     required this.isLoading,
-    required this.openDetailsPage,
     this.error = false,
+    required this.openDetailsPage,
+    required this.isFavorite,
+    required this.onFavoriteTap,
   });
 
   final List<Movies> movies;
   final bool isLoading;
   final bool error;
   final void Function(Movies) openDetailsPage;
+  final bool Function(int) isFavorite;
+  final void Function(int) onFavoriteTap;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +80,11 @@ class MoviesListTemplate extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () => openDetailsPage(movies[index]),
-                      child: MovieItemMolecule(movie: movies[index]),
+                      child: MovieItemMolecule(
+                        movie: movies[index],
+                        isFavorite: isFavorite(movies[index].id),
+                        onFavoriteTap: () => onFavoriteTap(movies[index].id),
+                      ),
                     );
                   },
                 ),

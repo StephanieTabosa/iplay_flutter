@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/data/failures.dart';
 import '../../../shared/utils/status.dart';
+import '../../data/hive/favorites_movies_box_handler.dart';
 import '../../domain/entities/movies.dart';
 import '../../domain/usecases/get_movies_list_usecase.dart';
 import '../../movies_navigator.dart';
@@ -21,9 +22,11 @@ class MoviesListCubit extends Cubit<MoviesListState> {
 
   final MoviesNavigator _moviesNavigator;
   final GetMoviesListUsecase _getMoviesListUsecase;
+  final _favoritesMoviesBoxHandler = FavoritesMoviesBoxHandler();
 
   // Actions
   Future<void> onInit() async {
+    await _favoritesMoviesBoxHandler.openBox('favorite');
     await _getMoviesList();
   }
 
@@ -53,5 +56,18 @@ class MoviesListCubit extends Cubit<MoviesListState> {
 
   void openDetailsPage(Movies movie) {
     _moviesNavigator.openMoviesDetails(movie: movie);
+  }
+
+  void onFavoriteTap(int movieId) {
+    if (_favoritesMoviesBoxHandler.isFavorite(movieId)) {
+      _favoritesMoviesBoxHandler.removeFavorite(movieId);
+    } else {
+      _favoritesMoviesBoxHandler.addFavorite(movieId);
+    }
+    emit(state.copyWith(movies: state.movies));
+  }
+
+  bool isFavorite(int movieId) {
+    return _favoritesMoviesBoxHandler.isFavorite(movieId);
   }
 }
