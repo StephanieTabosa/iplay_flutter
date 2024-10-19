@@ -14,15 +14,17 @@ class MoviesListCubit extends Cubit<MoviesListState> {
   MoviesListCubit({
     required MoviesNavigator moviesNavigator,
     required GetMoviesListUsecase getMoviesListUsecase,
+    required FavoritesMoviesBoxHandler favoritesMoviesBoxHandler,
   })  : _moviesNavigator = moviesNavigator,
         _getMoviesListUsecase = getMoviesListUsecase,
+        _favoritesMoviesBoxHandler = favoritesMoviesBoxHandler,
         super(
           const MoviesListState(),
         );
 
   final MoviesNavigator _moviesNavigator;
   final GetMoviesListUsecase _getMoviesListUsecase;
-  final _favoritesMoviesBoxHandler = FavoritesMoviesBoxHandler();
+  final FavoritesMoviesBoxHandler _favoritesMoviesBoxHandler;
 
   // Actions
   Future<void> onInit() async {

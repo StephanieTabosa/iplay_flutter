@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:iplay_flutter/modules/movies/data/datasources/movies_datasource.dart';
+import 'package:iplay_flutter/modules/movies/data/hive/favorites_movies_box_handler.dart';
 import 'package:iplay_flutter/modules/movies/domain/entities/movies.dart';
 import 'package:iplay_flutter/modules/movies/domain/usecases/get_movies_list_usecase.dart';
 import 'package:iplay_flutter/modules/movies/movies_navigator.dart';
@@ -14,6 +15,13 @@ class MoviesDatasourceMock extends Mock implements MoviesDatasource {}
 class MoviesNavigatorMock extends Mock implements MoviesNavigator {}
 
 class GetMoviesListUsecaseMock extends Mock implements GetMoviesListUsecase {}
+
+class FavoritesMoviesBoxHandlerMock extends Mock implements FavoritesMoviesBoxHandler {
+  @override
+  Future<void> openBox(String boxName) {
+    return Future.value();
+  }
+}
 
 const appNetworkImplMock = AppNetworkImpl();
 
@@ -49,6 +57,12 @@ const movieMock = Movies(
 final exceptionMock = Exception('Error');
 
 final failureMock = Failure(exception: exceptionMock);
+
+class MockPathProvider {
+  static Future<String> getApplicationDocumentsDirectory() async {
+    return '/mock/path';
+  }
+}
 
 class DioExceptionMock extends DioException {
   DioExceptionMock({

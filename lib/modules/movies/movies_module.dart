@@ -4,6 +4,7 @@ import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 import '../shared/app_module.dart';
 import 'data/datasources/movies_datasource_impl.dart';
+import 'data/hive/favorites_movies_box_handler.dart';
 import 'data/repositories/movies_repository_impl.dart';
 
 import 'movies_navigator.dart';
@@ -28,6 +29,9 @@ class MoviesModule extends Module {
         // Navigator
         Bind((i) => const MoviesNavigator()),
 
+        // Hive
+        Bind((i) => FavoritesMoviesBoxHandler()),
+
         // Datasources
         Bind(
           (i) => MoviesDatasourceImpl(
@@ -49,6 +53,7 @@ class MoviesModule extends Module {
           (i) => MoviesListCubit(
             getMoviesListUsecase: i(),
             moviesNavigator: i(),
+            favoritesMoviesBoxHandler: i(),
           ),
         ),
         BlocBind.factory(

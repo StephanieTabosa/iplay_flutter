@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../shared/utils/status.dart';
-import '../../data/hive/favorites_movies_box_handler.dart';
 import '../../movies_module.dart';
 import '../cubits/movies_list_cubit.dart';
 import '../atomic/templates/movies_list_template.dart';
@@ -19,25 +18,17 @@ class MoviesListPage extends StatefulWidget {
 }
 
 class _MoviesListPageState extends State<MoviesListPage> {
-  final cubit = Modular.get<MoviesListCubit>();
-
-  final _favoritesMoviesBoxHandler = FavoritesMoviesBoxHandler();
+  late final MoviesListCubit cubit;
 
   @override
   void initState() {
     super.initState();
+    cubit = Modular.get<MoviesListCubit>();
     _initialize();
   }
 
   Future<void> _initialize() async {
-    await _favoritesMoviesBoxHandler.openBox('favorite');
     await cubit.onInit();
-  }
-
-  @override
-  void dispose() {
-    _favoritesMoviesBoxHandler.closeBox();
-    super.dispose();
   }
 
   @override
